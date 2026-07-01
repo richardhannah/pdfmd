@@ -32,6 +32,9 @@ MANIFEST
 # ...but keep our checked-in build spec
 !packaging/pdfmd.spec
 
+# Scratch screenshots of source books (copyrighted content) dropped in the repo root
+/screenshot.png
+
 # Unit test / coverage reports
 htmlcov/
 .tox/
