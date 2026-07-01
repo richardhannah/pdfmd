@@ -67,6 +67,15 @@ full = [
     "ocrmypdf>=15.0.0",
 ]
 
+# High-quality layout/table extraction backend.
+# NON-COMMERCIAL: pymupdf-layout is dual-licensed Polyform Noncommercial /
+# Artifex Commercial. Installing this extra opts you into those terms — do not
+# install it for commercial use without an Artifex commercial license.
+layout = [
+    "pymupdf4llm>=1.28.0",
+    "pymupdf-layout>=1.28.0",
+]
+
 # Development tools
 dev = [
     "pytest>=7.4.0",

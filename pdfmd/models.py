@@ -163,6 +163,12 @@ class Options:
     ocr_lang: str = "eng"
     preview_only: bool = False
 
+    # Conversion backend:
+    #   "native" — the built-in extract/transform/render pipeline (MIT, PyMuPDF only)
+    #   "layout" — pymupdf4llm + pymupdf-layout for far better multi-column/table
+    #              recovery. Optional `[layout]` extra; NON-COMMERCIAL dependency.
+    backend: Literal["native", "layout"] = "native"
+
     # Transform heuristics
     caps_to_headings: bool = True
     defragment_short: bool = True

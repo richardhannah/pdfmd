@@ -148,6 +148,19 @@ Security notes:
     )
 
     parser.add_argument(
+        "--backend",
+        choices=["native", "layout"],
+        default="native",
+        help=(
+            "Conversion backend (default: native):\n"
+            "  native — built-in pipeline (MIT, PyMuPDF only)\n"
+            "  layout — pymupdf4llm + pymupdf-layout; far better multi-column\n"
+            "           and table recovery. Needs the [layout] extra and is\n"
+            "           NON-COMMERCIAL (Polyform license). pip install .[layout]"
+        ),
+    )
+
+    parser.add_argument(
         "--lang",
         default="eng",
         help=(
@@ -234,6 +247,7 @@ def _make_options(args: argparse.Namespace) -> Options:
     opts.ocr_mode = args.ocr
     opts.ocr_lang = args.lang or "eng"
     opts.preview_only = bool(args.preview_only)
+    opts.backend = args.backend
 
     # Rendering / output
     opts.insert_page_breaks = bool(args.page_breaks)

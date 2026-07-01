@@ -210,6 +210,31 @@ def pdf_to_markdown(
     if fitz is None:
         raise RuntimeError("PyMuPDF (fitz) is not installed. Install with: pip install pymupdf")
 
+    # --- Alternate backend: pymupdf4llm + pymupdf-layout (opt-in, non-commercial) ---
+    if getattr(options, "backend", "native") == "layout":
+        from .layout_backend import render_with_layout
+
+        if log_cb:
+            log_cb("[pipeline] Using layout backend (pymupdf4llm + pymupdf-layout)…")
+        if progress_cb:
+            progress_cb(10, 100)
+
+        md = render_with_layout(input_pdf, options, log_cb=log_cb, pdf_password=pdf_password)
+
+        if progress_cb:
+            progress_cb(90, 100)
+        try:
+            Path(output_md).write_text(md, encoding="utf-8")
+        except Exception as e:
+            if log_cb:
+                log_cb(f"[pipeline] Error writing output: {e}")
+            raise
+        if progress_cb:
+            progress_cb(100, 100)
+        if log_cb:
+            log_cb(f"[pipeline] Saved → {output_md}")
+        return
+
     # --- Stage 1: Extract ---
     if log_cb:
         log_cb("[pipeline] Extracting text…")

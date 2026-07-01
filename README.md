@@ -1354,9 +1354,22 @@ Contributions welcome! You can help by:
 
 ## 📜 License
 
-MIT License. Free for personal and commercial use.
+This project's own code is **MIT** — see [LICENSE](LICENSE).
 
-See [LICENSE](LICENSE) file for details.
+### Dependencies & licensing (read before commercial use)
+
+pdfmd's code is MIT, but it builds on libraries with their **own** licenses that
+your usage must comply with — your MIT rights do not extend to them:
+
+| Dependency | License | Implication |
+| ---------- | ------- | ----------- |
+| **PyMuPDF** (required) | AGPL-3.0 or Artifex commercial | Copyleft. Private use is unrestricted; **distributing** a combined work (e.g. a bundled `.exe`) triggers AGPL source/licensing obligations unless you hold Artifex's commercial license. |
+| **pymupdf-layout / pymupdf4llm** (optional `[layout]` extra) | Polyform Noncommercial or Artifex commercial | The high-quality layout/table backend is **non-commercial only** unless you buy an Artifex commercial license. The default install does **not** include it. |
+
+Practical summary: **private, non-commercial use is fully clear.** Publishing the
+**source** is fine (you're not redistributing the dependencies). The lines to avoid
+are **distributing bundled binaries** and **commercial use of the `[layout]` backend**.
+Install the layout backend only if your use is non-commercial: `pip install .[layout]`.
 
 ---
 
