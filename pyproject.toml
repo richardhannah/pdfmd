@@ -96,7 +96,7 @@ Repository = "https://github.com/M1ck4/pdfmd"
 packages = ["pdfmd"]
 
 [tool.setuptools.package-data]
-pdfmd = ["py.typed"]
+pdfmd = ["py.typed", "tunings/*.toml"]
 
 [tool.black]
 line-length = 100

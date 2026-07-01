@@ -1,0 +1,85 @@
+# Tuning profile for the Dungeons & Dragons Rules Cyclopedia (TSR, 1991).
+#
+# This PDF is widely and legally available, so this profile should work for
+# anyone converting the same book. Used via:  pdfmd book.pdf --tuning rules-cyclopedia
+#
+# Chapter titles/pages are transcribed from the book's own Table of Contents.
+# `page` is the PRINTED page number. `page_offset` maps printed -> physical PDF
+# page for later chapter-splitting (option B); it is NOT needed for the option-A
+# passes here (chapter headings are matched by title text, and page anchors use
+# physical page numbers directly), so it is left at a best-guess pending calibration.
+
+[book]
+name   = "D&D Rules Cyclopedia"
+detect = ["Rules Cyclopedia", "Dungeons & Dragons Rules Cyclopedia"]
+page_offset = 0
+
+[[chapters]]
+title = "Chapter 1: Steps in Character Creation"
+page  = 6
+[[chapters]]
+title = "Chapter 2: The Character Classes"
+page  = 13
+[[chapters]]
+title = "Chapter 3: Spells and Spellcasting"
+page  = 32
+[[chapters]]
+title = "Chapter 4: Equipment"
+page  = 62
+[[chapters]]
+title = "Chapter 5: Other Character Abilities"
+page  = 75
+[[chapters]]
+title = "Chapter 6: Movement"
+page  = 87
+[[chapters]]
+title = "Chapter 7: Encounters and Evasion"
+page  = 91
+[[chapters]]
+title = "Chapter 8: Combat"
+page  = 102
+[[chapters]]
+title = "Chapter 9: Mass Combat"
+page  = 117
+[[chapters]]
+title = "Chapter 10: Experience"
+page  = 127
+[[chapters]]
+title = "Chapter 11: Nonplayer Characters"
+page  = 132
+[[chapters]]
+title = "Chapter 12: Strongholds and Dominions"
+page  = 134
+[[chapters]]
+title = "Chapter 13: Dungeon Master Procedures"
+page  = 143
+[[chapters]]
+title = "Chapter 14: Monsters"
+page  = 152
+[[chapters]]
+title = "Chapter 15: Immortals"
+page  = 219
+[[chapters]]
+title = "Chapter 16: Treasure"
+page  = 224
+[[chapters]]
+title = "Chapter 17: Campaigning"
+page  = 256
+[[chapters]]
+title = "Chapter 18: The Planes of Existence"
+page  = 263
+[[chapters]]
+title = "Chapter 19: Variant Rules"
+page  = 266
+[[chapters]]
+title = "Appendix 1: The D&D Game World"
+page  = 268
+[[chapters]]
+title = "Appendix 2: AD&D Game Conversions"
+page  = 291
+[[chapters]]
+title = "Appendix 3: Record Sheets"
+page  = 295
+[[chapters]]
+title = "Appendix 4: Indices"
+page  = 300

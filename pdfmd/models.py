@@ -169,6 +169,11 @@ class Options:
     #              recovery. Optional `[layout]` extra; NON-COMMERCIAL dependency.
     backend: Literal["native", "layout"] = "native"
 
+    # Deterministic post-processing profile (name of a pdfmd/tunings/<name>.toml).
+    # "" = none. Adds page anchors, a generated index, and NEEDS-RECONSTRUCTION
+    # flags. Book-tuned; see pdfmd/postprocess.py.
+    tuning: str = ""
+
     # Transform heuristics
     caps_to_headings: bool = True
     defragment_short: bool = True

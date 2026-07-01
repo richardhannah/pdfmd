@@ -161,6 +161,18 @@ Security notes:
     )
 
     parser.add_argument(
+        "--tuning",
+        default="",
+        metavar="NAME",
+        help=(
+            "Apply a deterministic post-processing profile by name (a\n"
+            "pdfmd/tunings/<NAME>.toml file), e.g. 'rules-cyclopedia'. Adds\n"
+            "page anchors, a generated hyperlink index, and NEEDS-RECONSTRUCTION\n"
+            "flags to ease a later cleanup pass. Page anchors need --backend layout."
+        ),
+    )
+
+    parser.add_argument(
         "--lang",
         default="eng",
         help=(
@@ -248,6 +260,7 @@ def _make_options(args: argparse.Namespace) -> Options:
     opts.ocr_lang = args.lang or "eng"
     opts.preview_only = bool(args.preview_only)
     opts.backend = args.backend
+    opts.tuning = args.tuning or ""
 
     # Rendering / output
     opts.insert_page_breaks = bool(args.page_breaks)

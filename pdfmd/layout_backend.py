@@ -60,12 +60,23 @@ def render_with_layout(
         if log_cb:
             log_cb("[layout] Running pymupdf4llm + layout analysis…")
 
-        if options.insert_page_breaks:
+        # Emit page anchors when a tuning is active so post-processing (and later
+        # chapter-splitting / citation) can locate content by physical page.
+        want_page_markers = bool(getattr(options, "tuning", ""))
+
+        if options.insert_page_breaks or want_page_markers:
             chunks = pymupdf4llm.to_markdown(doc, pages=pages, page_chunks=True)
-            md = "\n\n---\n\n".join(
-                (c.get("text", "") if isinstance(c, dict) else str(c)).strip()
-                for c in chunks
-            )
+            sep = "\n\n---\n\n" if options.insert_page_breaks else "\n\n"
+            parts: List[str] = []
+            for i, c in enumerate(chunks):
+                text = (c.get("text", "") if isinstance(c, dict) else str(c)).strip()
+                if want_page_markers:
+                    meta = c.get("metadata", {}) if isinstance(c, dict) else {}
+                    pno = meta.get("page", pages[i] if pages else i)
+                    parts.append(f"<!-- page {int(pno) + 1} -->\n\n{text}")
+                else:
+                    parts.append(text)
+            md = sep.join(parts)
         else:
             md = pymupdf4llm.to_markdown(doc, pages=pages)
 

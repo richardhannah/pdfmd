@@ -221,6 +221,11 @@ def pdf_to_markdown(
 
         md = render_with_layout(input_pdf, options, log_cb=log_cb, pdf_password=pdf_password)
 
+        if getattr(options, "tuning", ""):
+            from .postprocess import apply_tuning
+
+            md = apply_tuning(md, options.tuning, log_cb=log_cb)
+
         if progress_cb:
             progress_cb(90, 100)
         try:
@@ -306,10 +311,16 @@ def pdf_to_markdown(
     if progress_cb:
         progress_cb(90, 100)
 
+    # --- Optional deterministic post-processing ---
+    if getattr(options, "tuning", ""):
+        from .postprocess import apply_tuning
+
+        md = apply_tuning(md, options.tuning, log_cb=log_cb)
+
     # --- Write output ---
     if log_cb:
         log_cb("[pipeline] Writing output file…")
-    
+
     try:
         Path(output_md).write_text(md, encoding="utf-8")
     except Exception as e:
