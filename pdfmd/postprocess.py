@@ -118,7 +118,8 @@ def _flag_hard_cases(md: str) -> str:
     md = md.replace(
         "<!-- Start of picture text -->",
         "<!-- NEEDS-RECONSTRUCTION: block below was detected as an image and "
-        "dumped as raw text; likely a table to rebuild as a grid. -->",
+        "dumped as raw text (lines joined with <br>). Reconstruct as a table if "
+        "tabular, otherwise reflow as prose. -->",
     )
     md = md.replace("<!-- End of picture text -->", "<!-- END NEEDS-RECONSTRUCTION -->")
 
