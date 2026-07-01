@@ -9,6 +9,18 @@
 ![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)
 ![Version](https://img.shields.io/badge/version-1.6.0-purple)
 
+> ### 🎲 Fork note — tuned for BECMI D&D sourcebooks
+>
+> This is a **specifically tuned fork** of [M1ck4/pdfmd](https://github.com/M1ck4/pdfmd),
+> adapted for converting **BECMI-era _Dungeons & Dragons_ sourcebooks** (Basic / Expert /
+> Companion / Master / Immortals — e.g. the _Rules Cyclopedia_) into a clean, searchable
+> Markdown corpus. Its heuristics — and ongoing work on multi-column table extraction — are
+> aimed at that family of documents.
+>
+> You can absolutely point it at other PDFs; it's still a general-purpose PDF → Markdown
+> converter. But on layouts it wasn't tuned for, **your mileage may vary**. Licensed MIT,
+> same as upstream.
+
 ---
 
 ## 📑 Table of Contents
