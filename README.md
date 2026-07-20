@@ -23,7 +23,71 @@
 
 ---
 
+## 📖 Scanning Your Own Book for Best Results
+
+**The single biggest lever on output quality is the quality of the scan you start from.**
+If you're building a corpus from a physical sourcebook you own, a good home scan beats a
+poor commercial PDF by a wide margin.
+
+### Why scan your own?
+
+Many commercially sold RPG PDFs are **low-resolution page scans** (often ~150 DPI) with a
+pre-baked, error-ridden OCR text layer. Those errors aren't just cosmetic — they can
+corrupt the *numbers* that a rules corpus depends on (a spell's level, a percentage, a
+die code), which is the one kind of mistake you can't afford.
+
+In our own testing on a single **Rules Cyclopedia** page, converting a **300 DPI home
+scan** with Tesseract produced roughly **⅓ the OCR errors** of a ~150 DPI commercial
+scan's embedded text layer for the *same passage* — and, crucially, **every number came
+through intact**, where the commercial layer had silently corrupted some. (Sample size is
+small — one prose/stat-block page — but the direction is exactly what scan resolution
+predicts.)
+
+> ⚖️ **Only scan books you own, for your own use.** Scanning your own copy for personal
+> conversion is one thing; redistributing scans or the resulting corpus is another —
+> that's on you, and it's usually not permitted for copyrighted material.
+
+### Recommended scan settings
+
+Scan **for OCR**, not for looks:
+
+| Setting | Recommendation | Why |
+| ------- | -------------- | --- |
+| **Resolution** | **300 DPI** (400 for small print) | The biggest single factor in OCR accuracy. Below ~200 DPI, error rates climb fast. |
+| **Colour mode** | **Grayscale** | Cleaner edges for OCR than colour, and far smaller files. Avoid bi-level/black-and-white unless the page is pure text — it clips faint strokes. |
+| **Orientation** | **Upright** | Check pages aren't rotated 90°/180°. If some are, either fix them in your scanner software or let Tesseract auto-rotate (see below). |
+| **Deskew / flatten** | **On** | Straighten tilted pages and flatten spine curvature; skew hurts line detection. |
+| **Format** | **PDF** (or per-page TIFF/PNG) | Any of these feed straight into pdfmd. |
+| **Compression** | Lossless or high-quality | Heavy JPEG artefacts smear glyph edges and confuse OCR. |
+
+### Converting your scan
+
+A home scan has **no text layer**, so you must run OCR (`--ocr auto` detects this and
+turns it on automatically):
+
+```bash
+# Auto-detect the scanned pages and OCR them
+pdfmd my-scan.pdf --ocr auto
+
+# Or force page-by-page OCR on every page
+pdfmd my-scan.pdf --ocr tesseract
+```
+
+**Wrong orientation?** Tesseract can detect and correct page rotation automatically —
+make sure the `osd` (orientation & script detection) data is installed
+(`tesseract --list-langs` should list `osd`; the standard installer includes it).
+
+> ⚠️ **A good scan is a better *starting point*, not a finished corpus.** OCR — even on a
+> clean 300 DPI scan — still makes occasional slips, and **dense tables are the hardest
+> case** for any OCR engine. Budget for a cleanup/proofreading pass, especially on
+> stat-block and table-heavy pages.
+
+---
+
 ## 📑 Table of Contents
+
+* [Scanning Your Own Book for Best Results](#-scanning-your-own-book-for-best-results)
+
 
 * [Privacy & Security First](#️-privacy--security-first)
 
